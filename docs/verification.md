@@ -8,6 +8,6 @@
 - Browser inspection: disclosure pack at desktop width and evidence view at phone width. Generated reports escape record text; wide data is contained in horizontally scrollable regions.
 - Brand lint: no errors. No author placeholders or prohibited voice terms remain.
 - The schema runs through PGlite's Postgres engine. A separately hosted Postgres server has not been exercised in this build.
-- A GitHub workflow covers Node 22 on Windows and Linux. Remote workflow results are recorded separately when available.
+- GitHub Actions run 39358416397 could not start: GitHub reported failed account payments or a spending limit. Linux and Windows jobs ran no steps. Local Linux checks passed; Windows remains unverified. The workflow is ready to run when the organisation account allows it.
 
 Tests use temporary folders, disable DATABASE_URL and never need a live business database. The demo figures are fictional. Page examples are captured command output, not handwritten results.
