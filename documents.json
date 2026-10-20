@@ -1,11 +1,56 @@
 [
   {
-    "name": "example",
-    "title": "TODO(author): the first document this industry must produce",
-    "for_each": "select gen_random_uuid() as id, 'Example' as name",
+    "name": "disclosure-pack",
+    "title": "Disclosure review pack",
+    "for_each": "select id,name from cycles order by name",
     "file": "name",
     "sections": [
-      { "title": "Details", "sql": "select 'replace me' as item, $1::text as record_id" }
+      {
+        "title": "Reporting dates",
+        "sql": "select period_end,deadline,retain_until,status from cycles where id=$1"
+      },
+      {
+        "title": "Narrative drafts",
+        "note": "Internal draft. Not issued financial statements.",
+        "sql": "select reference,title,narrative from items where cycle_id=$1 order by reference"
+      },
+      {
+        "title": "Supporting figures",
+        "sql": "select code,label,value::text value,unit,evidence_ref,observed_on from facts where cycle_id=$1 order by code"
+      },
+      {
+        "title": "Review checks",
+        "sql": "select reference,revision,signed_revision,evidence_gaps,failed_tieouts,open_tasks,coalesce(is_signed,false) signed from v_reporting where cycle_id=$1 order by reference"
+      }
+    ]
+  },
+  {
+    "name": "signoff-record",
+    "title": "Disclosure sign-off record",
+    "for_each": "select id,reference name from items order by reference",
+    "file": "name",
+    "sections": [
+      {
+        "title": "Disclosure",
+        "sql": "select reference,title,owner,narrative,revision from items where id=$1"
+      },
+      {
+        "title": "Decision history",
+        "note": "Operator-supplied reviewer labels. No digital signature.",
+        "sql": "select revision,decision,actor,evidence_ref,created_at from signoffs where item_id=$1 order by created_at"
+      }
+    ]
+  },
+  {
+    "name": "reconciliation",
+    "title": "Reporting reconciliation record",
+    "for_each": "select id,name from cycles order by name",
+    "file": "name",
+    "sections": [
+      {
+        "title": "Agreements and differences",
+        "sql": "select name,left_code,right_code,left_value,right_value,difference,unit,tolerance,passed from v_tieouts where cycle_id=$1 order by name"
+      }
     ]
   }
 ]

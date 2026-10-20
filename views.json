@@ -1,13 +1,36 @@
 [
   {
-    "name": "week",
-    "title": "This week",
-    "subtitle": "Disclosure Desk for Claude Code: what needs attention, rendered by npm run view",
+    "name": "reporting-week",
+    "title": "Reporting week",
+    "subtitle": "Internal review snapshot",
     "sections": [
       {
-        "title": "Needs attention",
-        "note": "TODO(author): point this at the industry's attention view (overdue, stuck, quiet).",
-        "sql": "select 'replace me' as item, 'TODO(author)' as why"
+        "title": "Work needing attention",
+        "sql": "select * from v_attention order by due,reference"
+      }
+    ]
+  },
+  {
+    "name": "evidence",
+    "title": "Evidence and reconciliation",
+    "sections": [
+      {
+        "title": "Evidence gaps",
+        "sql": "select cycle,code,label,observed_on,issue from v_evidence_gaps order by cycle,code"
+      },
+      {
+        "title": "Tie-outs",
+        "sql": "select cycle,name,left_value,right_value,difference,unit,tolerance,passed from v_tieouts order by cycle,name"
+      }
+    ]
+  },
+  {
+    "name": "signoffs",
+    "title": "Reporting sign-offs",
+    "sections": [
+      {
+        "title": "Current status",
+        "sql": "select cycle,reference,title,owner,revision,signed_revision,coalesce(is_signed,false) signed from v_reporting order by cycle,reference"
       }
     ]
   }

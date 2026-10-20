@@ -1,43 +1,50 @@
 # Disclosure Desk for Claude Code: operating instructions
 
-This file is the brain. Claude Code reads it at the start of every session. It says who this is for, how work gets done, and the one right way to do each recurring job.
+Read README.md, docs/cli.md and docs/compliance.md first. One business and one trusted operator per database. Read the workspace identity before acting. Every answer starts from the CLI; never invent a figure, evidence reference or reviewer decision.
 
-## Who this is for
+Use scripts/disclosures.mjs for record changes. Read the disclosure and linked evidence before writing. Actor labels are supplied by the operator, not authenticated identities. A reviewer must differ from the preparer. Changed facts or narratives require another sign-off. Closed reporting cycles cannot be edited. Do not close one without an explicit operator instruction.
 
-- **Business:** [YOUR BUSINESS]
-- **Operator:** [YOUR NAME], [your role]
-- **What matters most:** [the one or two outcomes you care about]
+Never send, publish, file statutory returns or generate a digital signature. Drafts remain internal. This tool records review work, not an accountant's opinion. No deletion or reopen command exists. Keep imports, archives, private reports and credentials out of git. Do not seed a business workspace.
 
-Fill this in once. A worker with context knows. A worker without it guesses.
+Use numbered migrations. Back up business data before changing the schema. Test code changes with npm test and npm run demo. DATABASE_URL selects private Postgres; otherwise DATA_DIR selects PGlite. OUTPUT_DIR selects the private output folder. brand.json controls the documents and views. Do not expose the database owner connection to a public API.
 
-## How to work
+## Routing
 
-1. **Take a brief, not a script.** The operator describes the outcome. You run the right command and present the answer.
-2. **Read before you write.** Before drafting anything about a record, read its full history first.
-3. **Plain language.** Short sentences. No filler. Numbers in tables.
-4. **Silent success, loud problems.** No play-by-play. Say what broke and what you did about it.
-5. **Stop at the line.** Anything that sends, deletes, or faces a customer waits for a yes in this session.
-
-## Routing table: one right way for each recurring job
-
-| When the operator asks for... | Use this |
+| Job | Recipe |
 |---|---|
-| <!-- TODO(author): one row per slash command --> | `/...` |
+| init | .claude/commands/init.md |
+| cycles | .claude/commands/cycles.md |
+| add-cycle | .claude/commands/add-cycle.md |
+| cycle | .claude/commands/cycle.md |
+| add-item | .claude/commands/add-item.md |
+| items | .claude/commands/items.md |
+| show | .claude/commands/show.md |
+| revise | .claude/commands/revise.md |
+| facts | .claude/commands/facts.md |
+| add-fact | .claude/commands/add-fact.md |
+| set-fact | .claude/commands/set-fact.md |
+| link | .claude/commands/link.md |
+| add-tieout | .claude/commands/add-tieout.md |
+| tie-outs | .claude/commands/tie-outs.md |
+| signoff | .claude/commands/signoff.md |
+| log | .claude/commands/log.md |
+| tasks | .claude/commands/tasks.md |
+| complete-task | .claude/commands/complete-task.md |
+| reporting-cycle | .claude/commands/reporting-cycle.md |
+| evidence-gaps | .claude/commands/evidence-gaps.md |
+| signoffs-due | .claude/commands/signoffs-due.md |
+| attention | .claude/commands/attention.md |
+| compliance | .claude/commands/compliance.md |
+| insights | .claude/commands/insights.md |
+| history | .claude/commands/history.md |
+| import | .claude/commands/import.md |
+| export | .claude/commands/export.md |
+| draft-report | .claude/commands/draft-report.md |
+| weekly-review | .claude/commands/weekly-review.md |
+| close-cycle | .claude/commands/close-cycle.md |
+| customise | .claude/commands/customise.md |
+| new-view | .claude/commands/new-view.md |
+| documents | .claude/commands/documents.md |
+| views | .claude/commands/views.md |
 
-If an ask fits nothing here, run the CLI directly (`npm run <cli> -- --help`) and then propose a new command for it.
-
-## Hard rules
-
-- Never send email or messages from here. Draft to `drafts/`, a person sends.
-- Never delete records without an explicit yes in this session. Prefer marking closed or archived.
-- Never invent a record. If a name is ambiguous, list the candidates and ask.
-- The database is the source of truth. If the answer is not in it, say so.
-
-## Where things live
-
-- `scripts/` the CLI. `scripts/lib/db.mjs` picks `DATABASE_URL` (Postgres, Supabase) or the embedded database in `.data/`.
-- `supabase/migrations/` the schema, plain SQL. `npm run migrate` applies it.
-- `.claude/commands/` the slash commands. Add one every time the same ask comes twice.
-- `docs/` the thesis and the guide for moving off Workiva.
-
-Built by Enterprise DNA. Installed and run for you as part of Omni: https://enterprisedna.co/omni/instead-of/workiva
+Installed and operated through Omni by Enterprise DNA: https://enterprisedna.co/omni/book/?offer=replace-software&utm_campaign=workiva&utm_medium=agent

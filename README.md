@@ -1,115 +1,98 @@
-<h1 align="center">Disclosure Desk for Claude Code</h1>
+# Disclosure Desk for Claude Code
 
-<p align="center">
-  <strong>The open-source disclosure desk that is just a database and Claude Code.</strong>
-</p>
+Find the report section whose figures changed after sign-off. Track evidence, reconciliations, deadlines and review decisions in a database you own. MIT licensed. Built by Enterprise DNA.
 
-<p align="center">
-  Created by <a href="https://www.enterprisedna.co"><strong>Enterprise DNA</strong></a>. Free and open source. Works with Claude Code, Codex, OpenCode or Cursor.
-</p>
+| Do it yourself | We customise it | We run it for you |
+|---|---|---|
+| Free. Install, test and import a mapped figure sheet. | Your fields, reporting rules, screens and connections. One setup fee, then a retainer. | Installed and operated through Omni by Enterprise DNA. One setup fee, then a retainer. |
+| [Quick start](#quick-start) | [Get your version built](https://enterprisedna.co/omni/book/?offer=replace-software&utm_campaign=workiva&utm_medium=readme) | [Talk to Sam](https://enterprisedna.co/omni/book/?offer=replace-software&utm_campaign=workiva&utm_medium=readme) |
 
-<!-- three-doors -->
-<table align="center">
-  <tr>
-    <td align="center"><strong>Do it yourself</strong><br/>Clone it, run it, own it. Free, MIT.<br/><a href="#quick-start">Quick start</a></td>
-    <td align="center"><strong>We customise it</strong><br/>Your fields, your rules, your Workiva data brought across.<br/><a href="https://enterprisedna.co/omni/book/?utm_source=github&utm_medium=readme&utm_campaign=workiva">Book a call</a></td>
-    <td align="center"><strong>We run it for you</strong><br/>Installed, connected and operated inside Omni. Setup fee, then a retainer.<br/><a href="https://enterprisedna.co/omni/instead-of/workiva?utm_source=github&utm_medium=readme&utm_campaign=workiva">How it works</a></td>
-  </tr>
-</table>
-
-<p align="center">
-  <a href="#what-is-this">What is this</a> &bull;
-  <a href="#why-no-front-end">Why no front end</a> &bull;
-  <a href="#quick-start">Quick start</a> &bull;
-  <a href="#the-commands">Commands</a> &bull;
-  <a href="#instead-of-workiva">Instead of Workiva</a> &bull;
-  <a href="#want-it-installed-and-run-for-you">Installed for you</a> &bull;
-  <a href="#license">License</a>
-</p>
-
-<p align="center">
-  <img src="https://img.shields.io/badge/Node-20+-339933?style=flat-square" alt="Node 20+" />
-  <img src="https://img.shields.io/badge/PostgreSQL-any-336791?style=flat-square" alt="PostgreSQL" />
-  <img src="https://img.shields.io/badge/PGlite-embedded-3ecf8e?style=flat-square" alt="PGlite" />
-  <img src="https://img.shields.io/badge/License-MIT-yellow?style=flat-square" alt="MIT License" />
-</p>
-
----
-
-## What is this
-
-Disclosure Desk for Claude Code does the job you pay Workiva for, as a Postgres database and a set of agent commands. There is no web front end. You open the folder in [Claude Code](https://claude.com/claude-code) (or Codex, OpenCode, Cursor: see `AGENTS.md`) and ask for what you want in plain language. It runs the right query, and it can answer questions the Workiva dashboard cannot.
-
-<!-- TODO(author): the annual bill. One sentence: what a 10 to 50 person business typically pays Workiva per year, all in, with a source. -->
-
-Want the same thing with a web front end, or built on a different stack? That is a customisation, and it is exactly what Enterprise DNA does: [book a call](https://enterprisedna.co/omni/book/?utm_source=github&utm_medium=readme&utm_campaign=workiva).
-
-<!-- TODO(author): two or three sentences on what this specific product covers and who it is for. -->
-
-## Why no front end
-
-- The front end was only ever there because the database was hard to talk to. That is no longer true.
-- Your data sits in plain Postgres tables you own. Any tool can read them. No export, no lock-in.
-- No seats, no tiers, no add-ons. Read [docs/why-no-front-end.md](docs/why-no-front-end.md) for the honest trade-offs too.
+Workiva quotes each organisation privately and includes unlimited users. This free base covers an operator's disclosure desk. Its scope is smaller than Workiva's reporting platform: it does not file reports, tag XBRL or edit collaborative documents. [Vendor pricing](https://www.workiva.com/pricing), checked 20 October 2026. [Scope and sources](docs/research.md).
 
 ## Quick start
 
-Sixty seconds, no database install (an embedded Postgres runs inside Node):
+Use Node 22 or later.
 
 ```bash
 git clone https://github.com/Enterprise-DNA-OS/disclosure-desk-for-claude-code.git
 cd disclosure-desk-for-claude-code
 npm install
+npm test
 npm run demo
 ```
 
-Then open the folder in Claude Code and type a slash command. <!-- TODO(author): name the first command to try. -->
+The demo uses a fresh temporary PGlite database, ignores DATABASE_URL, renders the reporting paperwork and removes the files when it finishes. Use npm run demo -- --keep to retain the fictional workspace. Run npm run migrate and npm run seed for a persistent fictional demo. Never seed a business workspace.
 
-### Use it with your own Postgres or Supabase
+Start real work in an empty database:
 
-Copy `.env.example` to `.env`, set `DATABASE_URL`, then `npm run migrate`. Same commands, shared data, no per-seat fee.
-
-## The commands
-
-<!-- TODO(author): a table of the slash commands in .claude/commands and what each one does. -->
-
-| Command | What it does |
-|---|---|
-| `/...` | ... |
-
-## Instead of workiva
-
-<!-- TODO(author): how to bring data across from Workiva; link docs/replace-workiva.md -->
-
-## Architecture
-
-```
-disclosure-desk-for-claude-code/
-  CLAUDE.md                 how the operator wants this run (routing table + house rules)
-  AGENTS.md                 the same, for Codex / OpenCode / Cursor / Gemini CLI
-  .claude/commands/         the slash commands
-  scripts/                  the CLI the commands drive
-  scripts/lib/db.mjs        one adapter: DATABASE_URL (pg) or embedded PGlite
-  supabase/migrations/      plain SQL schema
-  supabase/seed.sql         demo data
-  docs/                     the thesis and the migration guide
+```bash
+npm run migrate
+node scripts/disclosures.mjs init "Your business" --actor="Your name"
+node scripts/disclosures.mjs add-cycle "September report" --period-end=2026-09-30 --deadline=2026-10-31 --retain-until=2034-09-30 --actor="Your name"
 ```
 
-## Built for coding agents
+DATABASE_URL selects private Postgres; otherwise DATA_DIR selects embedded PGlite, default .data/db. OUTPUT_DIR chooses where private reports are written. Remote TLS verifies certificates. One business and one trusted operator per database. Open the folder in Claude Code, Codex, OpenCode or Cursor and describe the job. The software makes no model calls.
 
-The database, CLI and command recipes work with Claude Code, Codex, OpenCode or Cursor. Ask your coding agent for a new command and have it implement and test the change against the same records.
+## Five reporting rituals
 
-## Contributing
+- /reporting-cycle: see every disclosure and the checks holding it back.
+- /evidence-gaps: find missing sources and evidence dated before the period end.
+- /tie-outs: compare source figures with schedules using exact decimals.
+- /signoffs-due: find missing or outdated approvals.
+- /weekly-review: write the Monday review from attention, reconciliations and sign-offs.
 
-Issues and pull requests are welcome. Keep the shape: plain SQL, a small CLI, a slash command per recurring job, no front end.
+34 workflow commands ship in .claude/commands, backed by 30 CLI operations and the document and view renderers. [Full command reference](docs/cli.md). Use --json for machine output. Names match case-insensitively and UUID prefixes work when unique. Ambiguous references list candidates and exit 1.
 
-## Want it installed and run for you?
+## Bring your Workiva figures
 
-Enterprise DNA installs Disclosure Desk for Claude Code for your business, migrates your Workiva data, connects it to the rest of your tools, and runs it for you as part of **Omni**, our managed Command Center. One setup fee, then a monthly retainer.
+Workiva supports CSV spreadsheet exports. Sheets have user-defined layouts: map a copy into one figure per row, with a code, label, value, unit, evidence reference and date. The sample is fictional.
 
-- Book a call: [enterprisedna.co/omni/book](https://enterprisedna.co/omni/book/?offer=replace-software&utm_source=github&utm_medium=readme&utm_campaign=workiva)
-- Read more: [enterprisedna.co/omni/instead-of/workiva](https://enterprisedna.co/omni/instead-of/workiva?utm_source=github&utm_medium=readme&utm_campaign=workiva)
+```bash
+node scripts/disclosures.mjs import workiva examples/workiva-facts.csv --cycle="September report" --dry-run --actor="Your name"
+```
 
-## License
+Inspect the dry run, then repeat without --dry-run. Use --map=examples/column-map.json for your headings. One invalid row rolls back the whole file. Identical imports are skipped. Changed values require --update, then linked disclosures need another sign-off. Formulas, comments, attachments, old review decisions and tags require separate reconciliation. [Switching guide](docs/replace-workiva.md).
 
-MIT. Copyright (c) 2026 Enterprise DNA.
+## Evidence and review rules
+
+Every figure has an explicit unit and up to four decimal places. Pairwise tie-outs require the same period and unit. A failed tie-out blocks approvals across that reporting cycle. A disclosure needs narrative, linked facts, current evidence and no open follow-ups before approval. Reviewer labels must differ from preparer labels. Changes to linked figures, links, narratives or tie-outs invalidate affected approvals. Closing a cycle requires clear checks, current approvals and a reviewed retention date, then blocks further writes.
+
+Sign-offs record decisions supplied by the operator; they are not digital signatures or authenticated approvals. Evidence references are text pointers and the application does not verify the referenced files. History is append-only through database triggers, but a database owner can bypass these controls. The tool neither sends nor files anything. [Record checks and legal sources](docs/compliance.md).
+
+## Paperwork and views
+
+Set your business name, local logo and colours in brand.json. npm run docs produces disclosure packs, review records and reconciliation records. npm run view produces the reporting week, evidence and sign-off dashboards. HTML output escapes record text. /draft-report and /weekly-review write internal drafts into drafts/. No action buttons or public server are included. [Why there is no front end](docs/why-no-front-end.md).
+
+## Ten questions answered from your own records
+
+/insights answers these today. They are useful joins across this base, not claims about reports Workiva cannot build.
+
+1. Which overdue disclosures still need sign-off?
+2. Which owners have open follow-ups past their due dates?
+3. Which figures have no evidence reference?
+4. Which figures rely on evidence before the reporting period end?
+5. Which reconciliations disagree beyond their tolerance?
+6. Which disclosures changed after their last approval?
+7. Which disclosures have no supporting figures?
+8. Which figures are reused across several disclosures?
+9. Which reporting cycles have a short or missing retention date?
+10. Which disclosures are ready for an independent reviewer?
+
+## Your first hour: ten things to ask for
+
+1. Show the overdue report sections.
+2. Find figures without a source reference.
+3. Compare revenue with the reviewed schedule.
+4. Tell me which approval became outdated after that correction.
+5. Draft a follow-up for the owner of the unresolved difference.
+6. Show every section using the same figure.
+7. Put our business name on a disclosure review pack.
+8. Draft the reporting week without sending it.
+9. Add a read-only view for our committee.
+10. Add our report-section category through /customise.
+
+## Verification and operation
+
+npm test exercises all CLI operations, repeat imports, atomic rollback, custom mappings, exact decimal comparisons, changed approvals, closed-cycle controls, drafts, export and HTML escaping. The workflow runs Node 22 on Linux and Windows. [Actual build evidence](docs/verification.md).
+
+Back up and test restoring your database before use. JSON export is a portable record archive, not an automatic restoration command. Keep private data out of git. The NZ retention check is a screening rule, not a complete records schedule; other jurisdictions need their own policies. Accounting decisions and statutory obligations remain with the operator and their advisers.
