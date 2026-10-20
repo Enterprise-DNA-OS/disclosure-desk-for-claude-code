@@ -1,3 +1,7 @@
+---
+description: "Add a disclosure"
+---
+
 # Add a disclosure
 
 Read the cycle first. Use a unique reference and a named owner. Then link supporting facts.

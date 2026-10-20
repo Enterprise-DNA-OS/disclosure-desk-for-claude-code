@@ -1,3 +1,7 @@
+---
+description: "Read the change log"
+---
+
 # Read the change log
 
 Read actor labels, entity identifiers and timestamps. JSON export includes before and after records. Labels are operator-supplied, not authenticated identities.

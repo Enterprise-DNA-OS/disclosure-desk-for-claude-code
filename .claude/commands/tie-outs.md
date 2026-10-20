@@ -1,3 +1,7 @@
+---
+description: "Review numerical agreements"
+---
+
 # Review numerical agreements
 
 Show the two values, difference, unit, tolerance and result. A failed reconciliation blocks approval throughout its cycle.

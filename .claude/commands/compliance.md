@@ -1,3 +1,7 @@
+---
+description: "Check records and review controls"
+---
+
 # Check records and review controls
 
 Read docs/compliance.md. Explain the NZ retention screen separately from internal evidence checks. Report exceptions, never certify compliance.

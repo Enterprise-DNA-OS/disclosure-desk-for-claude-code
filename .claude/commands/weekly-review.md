@@ -1,3 +1,7 @@
+---
+description: "Write the Monday reporting review"
+---
+
 # Write the Monday reporting review
 
 Read attention, tie-outs and signoffs-due. The command writes their results to an internal draft. Summarise owners, deadlines and unresolved evidence. Never send it.

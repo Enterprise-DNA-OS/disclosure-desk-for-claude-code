@@ -1,3 +1,7 @@
+---
+description: "Record a supporting figure"
+---
+
 # Record a supporting figure
 
 Use exact decimal values and an explicit unit. Evidence references identify documents the operator has checked. The tool does not fetch them.

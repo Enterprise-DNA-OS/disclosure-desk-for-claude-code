@@ -1,3 +1,7 @@
+---
+description: "Correct a supporting figure"
+---
+
 # Correct a supporting figure
 
 Read every linked disclosure first. Changes invalidate their current approvals. Use a new fact code for a different unit.

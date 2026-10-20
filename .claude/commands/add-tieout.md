@@ -1,3 +1,7 @@
+---
+description: "Set a pairwise reconciliation"
+---
+
 # Set a pairwise reconciliation
 
 Read both figures and units first. Use only an explicitly agreed nonnegative tolerance. This compares two figures. It is not a formula engine.

@@ -1,3 +1,7 @@
+---
+description: "Assign a reporting follow-up"
+---
+
 # Assign a reporting follow-up
 
 Read existing tasks to avoid duplicates. Record a concrete next action with an owner and date.

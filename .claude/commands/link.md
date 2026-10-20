@@ -1,3 +1,7 @@
+---
+description: "Connect a disclosure to a figure"
+---
+
 # Connect a disclosure to a figure
 
 Both records must belong to the same reporting cycle. Adding a link changes the disclosure revision. Repeating the same link does nothing.

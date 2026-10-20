@@ -1,3 +1,7 @@
+---
+description: "Record an independent review decision"
+---
+
 # Record an independent review decision
 
 Read show and the current checks. Only record a decision actually supplied by the reviewer. Reviewer and preparer labels must differ. Use --decision=returned to record a return. This is a review record, not an authenticated digital signature.

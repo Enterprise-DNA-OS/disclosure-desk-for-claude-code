@@ -1,3 +1,7 @@
+---
+description: "Answer ten joined reporting questions"
+---
+
 # Answer ten joined reporting questions
 
 Return only the questions relevant to the operator and their actual rows. Empty results are not proof of complete source records.

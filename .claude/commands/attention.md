@@ -1,3 +1,7 @@
+---
+description: "Triage the reporting week"
+---
+
 # Triage the reporting week
 
 Read every flagged disclosure before assigning work. Show the reason and owner. A record labelled Ready may still be overdue.

@@ -1,3 +1,7 @@
+---
+description: "Run the reporting desk"
+---
+
 # Run the reporting desk
 
 Present each disclosure with its figure count, evidence gaps, failed reconciliations, open tasks and current sign-off.

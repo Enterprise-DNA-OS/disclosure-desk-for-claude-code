@@ -1,3 +1,7 @@
+---
+description: "Read supporting figures"
+---
+
 # Read supporting figures
 
 Keep values with their units and evidence references. Never sum different units or currencies.

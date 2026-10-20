@@ -1,3 +1,7 @@
+---
+description: "Read a full reporting period"
+---
+
 # Read a full reporting period
 
 Read dates and disclosure checks together. Distinguish closed periods from work in progress.

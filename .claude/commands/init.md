@@ -1,3 +1,7 @@
+---
+description: "Start an empty business workspace"
+---
+
 # Start an empty business workspace
 
 Read the workspace first. Initialise only an empty database. Never load fictional seed data into it.

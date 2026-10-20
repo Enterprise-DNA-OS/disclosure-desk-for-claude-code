@@ -1,3 +1,7 @@
+---
+description: "List disclosures"
+---
+
 # List disclosures
 
 Show reference, title, owner, due date and revision. Use show for the complete record.

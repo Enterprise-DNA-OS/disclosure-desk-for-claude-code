@@ -1,3 +1,7 @@
+---
+description: "Read open follow-ups"
+---
+
 # Read open follow-ups
 
 Show overdue work first. Add --all to include completed tasks.

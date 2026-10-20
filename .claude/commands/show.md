@@ -1,3 +1,7 @@
+---
+description: "Read a disclosure and its evidence"
+---
+
 # Read a disclosure and its evidence
 
 Read its narrative, linked figures, decision history and follow-ups before changing it.

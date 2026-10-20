@@ -1,3 +1,7 @@
+---
+description: "Record a completed follow-up"
+---
+
 # Record a completed follow-up
 
 Read the task and linked disclosure. Complete it only when the operator confirms the work is done.

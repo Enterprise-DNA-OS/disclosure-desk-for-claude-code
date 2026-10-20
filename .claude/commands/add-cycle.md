@@ -1,3 +1,7 @@
+---
+description: "Open a reporting period"
+---
+
 # Open a reporting period
 
 Use the dates the operator supplies. Confirm the applicable retention rule with the records owner. The software does not decide statutory deadlines.

@@ -1,3 +1,7 @@
+---
+description: "Draft an internal disclosure briefing"
+---
+
 # Draft an internal disclosure briefing
 
 Read cycle and show first. Return the saved draft path and unresolved checks. Do not issue, file or send it.

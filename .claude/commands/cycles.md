@@ -1,3 +1,7 @@
+---
+description: "List reporting periods"
+---
+
 # List reporting periods
 
 Show each period end, delivery deadline, retention date and open or closed state.
